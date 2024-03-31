@@ -21,7 +21,7 @@ const loader = document.querySelector('.wraper-loader');
 function onSubmit(event) {
   event.preventDefault();
   listElement.innerHTML = '';
-  loader.classList.remove('is-hidden');
+  showLoader();
   const searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   getPhotos(searchQuery)
     .then(response => {
@@ -39,6 +39,13 @@ function onSubmit(event) {
       console.log(err);
     })
     .finally(() => {
-      loader.classList.add('is-hidden');
+      hideLoader();
     });
+}
+
+function showLoader() {
+  loader.classList.remove('is-hidden');
+}
+function hideLoader() {
+  loader.classList.add('is-hidden');
 }
